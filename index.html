@@ -4,17 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Gallery</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Embedded CSS instead of external link -->
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: "Arial", sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .container {
+          max-width: 400px;
+          width: 100%;
+          padding: 20px;
+        }
+
+        .image-card {
+          position: relative;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+          transition: transform 0.3s ease;
+        }
+
+        .image-card:hover {
+          transform: translateY(-10px);
+        }
+
+        .main-image {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.3s ease;
+        }
+
+        .overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+          padding: 30px 20px 20px;
+          transform: translateY(100%);
+          transition: transform 0.3s ease;
+        }
+
+        .image-card:hover .overlay {
+          transform: translateY(0);
+        }
+
+        .see-more-btn {
+          background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 25px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .see-more-btn:hover {
+          background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .see-more-btn:active {
+          transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .container {
+            max-width: 300px;
+            padding: 15px;
+          }
+
+          .see-more-btn {
+            padding: 10px 25px;
+            font-size: 14px;
+          }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="image-card">
+            <!-- Updated image source to use provided blob URL -->
             <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aifaceswap-a5e2fe7dfddd20fc5a4700c681d25bd8.jpg-dbCs1eWV5sYz5P2a5DGqZw2pyHAdU6.jpeg" alt="Portrait" class="main-image">
             <div class="overlay">
-                <button class="see-more-btn" onclick="redirectToLink()">See More</button>
+                <button class="see-more-btn">See More</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- Embedded JavaScript instead of external link -->
+    <script>
+        function redirectToLink() {
+            // आपका दिया गया link
+            const targetUrl = "https://greetingsdaydreamlitre.com/qv9xa4c5?key=ad08da8e007bc94c2a3ac65d5fd8e883";
+            
+            try {
+                // नई window में link खोलना
+                window.open(targetUrl, "_blank");
+            } catch (error) {
+                // अगर window.open काम नहीं करे तो same window में खोलना
+                window.location.href = targetUrl;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const seeMoreBtn = document.querySelector(".see-more-btn");
+            const imageCard = document.querySelector(".image-card");
+            const mainImage = document.querySelector(".main-image");
+
+            // Button click event listener भी add करना
+            seeMoreBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                const targetUrl = "https://greetingsdaydreamlitre.com/qv9xa4c5?key=ad08da8e007bc94c2a3ac65d5fd8e883";
+                window.open(targetUrl, "_blank");
+            });
+
+            // Image load होने पर animation add करना
+            mainImage.addEventListener("load", () => {
+                imageCard.style.opacity = "0";
+                imageCard.style.transform = "scale(0.8)";
+
+                setTimeout(() => {
+                    imageCard.style.transition = "all 0.5s ease";
+                    imageCard.style.opacity = "1";
+                    imageCard.style.transform = "scale(1)";
+                }, 100);
+            });
+        });
+    </script>
 </body>
 </html>
